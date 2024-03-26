@@ -2,11 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   height: 100vh;
   box-sizing: border-box;
-  background-color: black;
+  background-color: grey;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@font-face {
+  font-family: "pretendard";
+  src: url("font/PretendardVariable.woff2") format("font-woff2");
+  src: url("font/PretendardVariable.woff") format("woff");
+}
+@layer base {
+  html {
+    font-family: pretendard, sans-serif;
+  }
+  h1 {
+    @apply text-[1.25rem];
+  }
+  h2 {
+    @apply text-[1.125rem];
+  }
+  h3 {
+    @apply text-[.875rem];
+  }
 }
