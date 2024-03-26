@@ -5,6 +5,8 @@ import ErrorPage from "./routes/ErrorPage";
 import { RecoilRoot } from "recoil";
 import Main from "./pages/Main";
 import KakaoAuth from "./routes/KakaoAuth";
+import LoginPage from "./pages/LoginPage";
+import SettingPage from "./pages/SettingPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,12 +20,24 @@ function App() {
           element: <Main />,
           errorElement: <ErrorPage />,
         },
+        {
+          path: "/setting",
+          element: <SettingPage />,
+          errorElement: <ErrorPage />,
+        },
       ],
     },
     {
-      path: "/kakao-auth",
-      element: <KakaoAuth />,
+      path: "/login",
+      element: <LoginPage />,
       errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "kakao-auth",
+          element: <KakaoAuth />,
+          errorElement: <ErrorPage />,
+        },
+      ],
     },
   ]);
 
