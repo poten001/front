@@ -1,6 +1,6 @@
-import React from "react";
 import MainLayout from "../components/layout/MainLayout";
 import { Outlet } from "react-router-dom";
+import SplashScreenLoading from "../components/loader/SplashScreenLoading";
 
 const Root = () => {
   // global layout
@@ -8,7 +8,9 @@ const Root = () => {
 
   return (
     <MainLayout>
-      <Outlet />
+      <SplashScreenLoading>
+        <Outlet />
+      </SplashScreenLoading>
     </MainLayout>
   );
 };
