@@ -1,5 +1,3 @@
-import React from "react";
-
 const KakaoLogin = () => {
   const REST_API_KEY = import.meta.env.VITE_KAKAO_LOGIN_REST_API_KEY;
   const REDIRECT_URL = import.meta.env.VITE_KAKAO_LOGIN_REDIRECT_URI;
