@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SplashScreenLoading from "../../src/components/loader/SplashScreenLoading";
+import SplashScreenLoading from "../components/loader/SplashScreenLoading";
 
 const Root = () => {
   // global layout
