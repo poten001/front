@@ -3,9 +3,9 @@ import SplashScreenLoading from "../components/loader/SplashScreenLoading";
 
 const Root = () => {
   return (
-    <SplashScreenLoading>
-      <Outlet />
-    </SplashScreenLoading>
+    // <SplashScreenLoading>
+    <Outlet />
+    // </SplashScreenLoading>
   );
 };
 
