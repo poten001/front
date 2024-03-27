@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SplashScreen from "../../pages/Main/SplashScreen";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { splashScreenState } from "../../store/splashScreenState";
+import StatusBarLayout from "../layout/StatusBarLayout";
 
 const SplashScreenLoading = ({ children }: { children: React.ReactNode }) => {
   const setSplashScreen = useSetRecoilState(splashScreenState);
@@ -15,7 +16,13 @@ const SplashScreenLoading = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const isSplashScreenActive = useRecoilValue(splashScreenState);
-  return isSplashScreenActive ? <SplashScreen /> : children;
+  return isSplashScreenActive ? (
+    <StatusBarLayout color="primary-500" showButton={false}>
+      <SplashScreen />
+    </StatusBarLayout>
+  ) : (
+    children
+  );
 };
 
 export default SplashScreenLoading;
