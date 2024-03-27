@@ -1,4 +1,3 @@
-import MainLayout from "../components/layout/MainLayout";
 import { Outlet } from "react-router-dom";
 import SplashScreenLoading from "../components/loader/SplashScreenLoading";
 
@@ -7,11 +6,9 @@ const Root = () => {
   // 공통되는 전역 레이아웃을 정의합니다
 
   return (
-    <MainLayout>
-      <SplashScreenLoading>
-        <Outlet />
-      </SplashScreenLoading>
-    </MainLayout>
+    <SplashScreenLoading>
+      <Outlet />
+    </SplashScreenLoading>
   );
 };
 
