@@ -12,7 +12,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 
   const navigate = useNavigate();
   return (
-    <div className="h-screen w-[375px] bg-white flex flex-col justify-center items-center">
+    <div className="h-[calc(100vh-58px-58px)] w-[375px] bg-white flex flex-col justify-center items-center">
       {!isSplashScreenActive && <StatusBar className="bg-primary-500" />}
 
       {children}
@@ -34,7 +34,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             "
               onClick={() => navigate("/my-page/:id")}
             >
-
               <MyPageIcon width={20} height={20} />
               <p className="text-body-s">마이페이지</p>
             </div>
