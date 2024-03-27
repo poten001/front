@@ -4,7 +4,6 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { splashScreenState } from "../../store/splashScreenState";
 import StatusBarLayout from "../layout/StatusBarLayout";
 
-
 const SplashScreenLoading = ({ children }: { children: React.ReactNode }) => {
   const setSplashScreen = useSetRecoilState(splashScreenState);
 
@@ -24,7 +23,6 @@ const SplashScreenLoading = ({ children }: { children: React.ReactNode }) => {
   ) : (
     children
   );
-
 };
 
 export default SplashScreenLoading;
