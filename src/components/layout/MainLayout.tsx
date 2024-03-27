@@ -29,7 +29,12 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           </div>
 
           <div className="flex w-full justify-between px-[53px] cursor-pointer">
-            <div className="flex flex-col items-center">
+            <div
+              className="flex flex-col items-center
+            "
+              onClick={() => navigate("/my-page/:id")}
+            >
+
               <MyPageIcon width={20} height={20} />
               <p className="text-body-s">마이페이지</p>
             </div>
