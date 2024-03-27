@@ -1,31 +1,23 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import StatusBar from "../../assets/statusBar.svg?react";
 import MyPageIcon from "../../assets/icons/mypage-icon.svg?react";
 import SettingIcon from "../../assets/icons/setting-icon.svg?react";
 import HomeIcon from "../../assets/icons/home-icon.svg?react";
-import { useSetRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { splashScreenState } from "../../store/splashScreenState";
+import { useNavigate } from "react-router-dom";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
+  const SplashScreen = useRecoilValue(splashScreenState);
+
   const navigate = useNavigate();
-
-  const setSplashScreen = useSetRecoilState(splashScreenState);
-
-  useEffect(() => {
-    const splashTimer = setTimeout(() => {
-      setSplashScreen(() => false);
-    }, 2000);
-
-    return () => clearTimeout(splashTimer);
-  }, []);
-
   return (
-    <>
-      <StatusBar className="bg-primary-500" />
-      <div className="h-full w-[375px] bg-white flex flex-col justify-center items-center">
-        {children}
+    <div className="h-full w-[375px] bg-white flex flex-col justify-center items-center">
+      {!SplashScreen && <StatusBar className="bg-primary-500" />}
 
+      {children}
+
+      {!SplashScreen && (
         <div className="w-full h-[80px] shadow-tab flex relative items-center">
           <div className="absolute top-[-18px] left-1/2 transform -translate-x-1/2">
             <div
@@ -39,7 +31,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
           <div className="flex w-full justify-between px-[53px] cursor-pointer">
             <div
               className="flex flex-col items-center
-              "
+            "
               onClick={() => navigate("/my-page/:id")}
             >
               <MyPageIcon width={20} height={20} />
@@ -54,8 +46,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             </div>
           </div>
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 
