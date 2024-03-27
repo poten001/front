@@ -8,6 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": false,
 
     /* Bundler mode */
     "moduleResolution": "node",
