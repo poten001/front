@@ -12,6 +12,7 @@ import CreateChallengePage from "./pages/CreateChallengePage";
 import Mypage from "./pages/MyPage";
 import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
 
+
 function App() {
   const router = createBrowserRouter([
     {

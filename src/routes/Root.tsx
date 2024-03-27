@@ -1,3 +1,4 @@
+
 import { Outlet } from "react-router-dom";
 import SplashScreenLoading from "../components/loader/SplashScreenLoading";
 
@@ -9,6 +10,7 @@ const Root = () => {
     <SplashScreenLoading>
       <Outlet />
     </SplashScreenLoading>
+
   );
 };
 

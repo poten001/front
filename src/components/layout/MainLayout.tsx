@@ -34,6 +34,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             "
               onClick={() => navigate("/my-page/:id")}
             >
+
               <MyPageIcon width={20} height={20} />
               <p className="text-body-s">마이페이지</p>
             </div>

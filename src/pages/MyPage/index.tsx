@@ -152,6 +152,7 @@ const Mypage = () => {
       </div>
     </MainLayout>
   );
+
 };
 
 export default Mypage;

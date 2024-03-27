@@ -59,6 +59,7 @@ const SettingPage = () => {
         </div>
       </div>
     </MainLayout>
+
   );
 };
 
