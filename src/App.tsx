@@ -70,7 +70,7 @@ function App() {
     },
 
     {
-      path: "/kakao/callback",
+      path: "/login",
       element: <LoginPage />,
       errorElement: <ErrorPage />,
     },
