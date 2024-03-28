@@ -61,19 +61,20 @@ function App() {
           element: <IsChallengeDonePage />,
           errorElement: <ErrorPage />,
         },
+        {
+          path: "/create-challenge",
+          element: <CreateChallengePage />,
+          errorElement: <ErrorPage />,
+        },
+
+        {
+          path: "/login",
+          element: <LoginPage />,
+          errorElement: <ErrorPage />,
+        },
       ],
     },
-    {
-      path: "/create-challenge",
-      element: <CreateChallengePage />,
-      errorElement: <ErrorPage />,
-    },
 
-    {
-      path: "/login",
-      element: <LoginPage />,
-      errorElement: <ErrorPage />,
-    },
     // {
     //   path: "/kakao/callback",
     //   element: <KakaoAuth />,
