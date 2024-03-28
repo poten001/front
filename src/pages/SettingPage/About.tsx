@@ -23,7 +23,7 @@ const AboutOchaelWanPage = () => {
   }, [location.pathname]);
 
   return (
-    <MainLayout>
+    <MainLayout color="white">
       <SettingPageLayout>
         <div>
           {datas.map((data) => (
