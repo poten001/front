@@ -1,5 +1,3 @@
-import StatusBar from "../../assets/statusBar.svg?react";
-
 type statusBarT = {
   children: React.ReactNode;
   color: string;
@@ -21,7 +19,7 @@ const StatusBarLayout = ({
 }: statusBarT) => {
   return (
     <div className="h-screen w-[375px] box-border bg-white flex flex-col justify-center items-center  ">
-      <StatusBar className={`bg-${color}`} />
+      <div className={`w-full h-[58px] bg-${color}`}></div>
       {children}
 
       {showButton ? (

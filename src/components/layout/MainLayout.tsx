@@ -1,19 +1,29 @@
-import { ReactNode } from "react";
-import StatusBar from "../../assets/statusBar.svg?react";
 import MyPageIcon from "../../assets/icons/mypage-icon.svg?react";
 import SettingIcon from "../../assets/icons/setting-icon.svg?react";
 import HomeIcon from "../../assets/icons/home-icon.svg?react";
 import { useRecoilValue } from "recoil";
 import { splashScreenState } from "../../store/splashScreenState";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const MainLayout = ({ children }: { children: ReactNode }) => {
+type MainPageLayoutT = {
+  children: React.ReactNode;
+  color?: string;
+};
+
+const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
   const SplashScreen = useRecoilValue(splashScreenState);
 
   const navigate = useNavigate();
+  const location = useLocation(); // 현재 경로를 가져옵니다.
+
+  // 현재 페이지에 따라 아이콘 색상을 결정하는 함수
+  const getIconColor = (page: string) => {
+    return location.pathname.includes(page) ? "#FBE587" : "white";
+  };
+
   return (
     <div className="h-full w-[375px] bg-white flex flex-col justify-center items-center">
-      {!SplashScreen && <StatusBar className="bg-primary-500" />}
+      {!SplashScreen && <div className={`bg-${color} w-full h-[58px]`}></div>}
 
       {children}
 
@@ -28,20 +38,28 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             </div>
           </div>
 
-          <div className="flex w-full justify-between px-[53px] cursor-pointer">
+          <div className="flex w-full justify-between px-[53px] cursor-pointer pb-[30px] pt-[10px]">
             <div
               className="flex flex-col items-center
             "
               onClick={() => navigate("/my-page/:id")}
             >
-              <MyPageIcon width={20} height={20} />
+              <MyPageIcon
+                width={20}
+                height={20}
+                fill={getIconColor("my-page")}
+              />
               <p className="text-body-s">마이페이지</p>
             </div>
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={() => navigate("/setting")}
             >
-              <SettingIcon width={20} height={20} />
+              <SettingIcon
+                width={20}
+                height={20}
+                fill={getIconColor("setting")}
+              />
               <p className="text-body-s">설정</p>
             </div>
           </div>

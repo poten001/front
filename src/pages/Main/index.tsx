@@ -7,6 +7,8 @@ import { useSetRecoilState } from "recoil";
 import { challengeLoadingState } from "../../store/challengeLoadingState";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
+import Notification from "../../assets/icons/notification.svg?react";
+// import Carousel from "../../components/carousel/Carousel";
 // import Carousel from "../../components/carousel";
 
 function Main() {
@@ -25,7 +27,7 @@ function Main() {
       <div className="flex flex-col justify-center items-center bg-primary-500 w-full ">
         <div className="flex w-full flex-row justify-between px-[36px] pt-[19px]">
           <Logo className="w-[67px] h-auto" />
-          <p>알림</p>
+          <Notification />
         </div>
 
         <div className="flex flex-row items-center gap-[25px] pt-[38px] pb-[32px]">
@@ -64,7 +66,6 @@ function Main() {
         </section>
       </div>
     </MainLayout>
-
   );
 }
 

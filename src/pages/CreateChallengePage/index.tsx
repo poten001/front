@@ -6,6 +6,7 @@ import { challengeLoadingState } from "../../store/challengeLoadingState";
 import { useEffect } from "react";
 import Roulette from "../../assets/roulette.svg?react";
 import { useNavigate } from "react-router-dom";
+import DownloadIcon from "../../assets/icons/downloadIcon.svg?react";
 
 const CreateChallengePage = () => {
   const { currentYear, currentMonth, currentDate, currentHour, currentMinute } =
@@ -23,7 +24,7 @@ const CreateChallengePage = () => {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({ data: "fake data" }); // 2초 후에 가짜 데이터 반환
-          }, 2000);
+          }, 500);
         });
       };
 
@@ -47,7 +48,7 @@ const CreateChallengePage = () => {
       leftBtnText="취소"
       rightBtnText="도전하기"
       leftBtnClick={() => navigate("/")}
-      rightBtnClick={() => navigate("/my-page")}
+      rightBtnClick={() => navigate("/my-page/:id")}
     >
       <div className="flex flex-col justify-center items-center h-[calc(100vh-58px-34px)] w-full">
         {challengeLoading ? (
@@ -64,20 +65,27 @@ const CreateChallengePage = () => {
               <h1>오늘의 챌린지를 뽑았어요</h1>
               <p className="text-body-m">24시간 내에 도전하고 #오챌완!</p>
             </div>
-            <div className="pt-12 pb-[80px] relative">
+
+            <div className="pt-12 pb-20 relative">
+              {/* 주 이미지 */}
               <img src={testImg} alt="test" className="w-[305px] h-[385px]" />
-              {/* 프로필 사진 */}
-              <div className="absolute left-[30px] top-[80px] flex">
+
+              {/* 프로필 사진과 텍스트를 묶은 컨테이너 */}
+              <div className="absolute flex items-center gap-2 left-[30px] top-[80px]">
                 <img
-                  src={testImg} // 여기서는 예시로 testImg를 사용했습니다. 실제 프로필 사진 경로로 변경해야 합니다.
+                  src={testImg}
                   alt="profile"
-                  className=" w-[34px] h-[34px] rounded-full"
+                  className="w-8 h-8 rounded-full"
                 />
-                {/* 닉네임과 시간을 포함하는 컨테이너 */}
-                <div className="">
-                  <h3 className="font-semibold ">챌린져</h3>
-                  <p className="text-body-s text-[#4B4B4B]">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
+                <div>
+                  <h3 className="font-semibold">챌린져</h3>
+                  <p className="text-body-s text-gray-700">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
                 </div>
+              </div>
+
+              {/* 다운로드 아이콘 */}
+              <div className="absolute top-20 right-8 ">
+                <DownloadIcon width={30} height={30} />
               </div>
             </div>
           </>
