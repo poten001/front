@@ -8,8 +8,7 @@ import { challengeLoadingState } from "../../store/challengeLoadingState";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
 import Notification from "../../assets/icons/notification.svg?react";
-// import Carousel from "../../components/carousel/Carousel";
-// import Carousel from "../../components/carousel";
+import SimpleSlider from "../../components/carousel/Carousel";
 
 function Main() {
   const { modal, openModalHandler, closeModalHandler } = useModal();
@@ -43,9 +42,8 @@ function Main() {
             </h1>
           </div>
         </div>
-        <section className="flex flex-col justify-center items-center w-full h-full bg-white rounded-tl-[28px] rounded-tr-[28px] gap-[48px] pt-[63px] pb-[44px]">
-          <div className="w-[220px] h-[266px] bg-primary-500 "></div>
-          {/* <Carousel /> */}
+        <section className="flex flex-col justify-center items-center w-full h-full bg-white rounded-tl-[28px] rounded-tr-[28px] gap-[48px] pt-[42px] pb-[32px] overflow-x-hidden">
+          <SimpleSlider />
           <button
             className="px-[125px] py-[15px] bg-secondary-500 rounded-xl text-white"
             onClick={openModalHandler}
