@@ -36,3 +36,48 @@ body {
     @apply text-[.875rem];
   }
 }
+
+@layer components {
+  .slider-container {
+    width: 100vw;
+    height: 300px;
+    padding-top: 20px;
+    background-color: white;
+    overflow-x: hidden;
+  }
+
+  .slick-slider {
+    background-color: white;
+    height: 100%;
+  }
+  .slick-slide {
+    transition: all 0.3s;
+    opacity: 0.6;
+    margin: 0 15px;
+  }
+
+  .slick-center {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  .slick-list {
+    margin: 0 -15px;
+  }
+
+  .slick-slider-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .fixed-size {
+    width: 220px;
+    margin: 0 auto;
+    padding: 0 10px;
+    height: 266px;
+    border-radius: 12px;
+    background-color: inherit;
+  }
+}

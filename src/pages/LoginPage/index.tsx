@@ -1,6 +1,5 @@
 import LoginImage from "../../assets/loginImage.svg?react";
 import KaKaoIcon from "../../assets/icons/kakaoIcon.svg?react";
-// import StatusBar from "../../assets/statusBar.svg?react";
 import StatusBarLayout from "../../components/layout/StatusBarLayout";
 
 const LoginPage = () => {
