@@ -4,14 +4,13 @@ import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
 import { RecoilRoot } from "recoil";
 import Main from "./pages/Main";
-import KakaoAuth from "./routes/KakaoAuth";
+// import KakaoAuth from "./routes/KakaoAuth";
 import LoginPage from "./pages/LoginPage";
 import SettingPage from "./pages/SettingPage";
 import AboutOchaelWanPage from "./pages/SettingPage/About";
 import CreateChallengePage from "./pages/CreateChallengePage";
 import Mypage from "./pages/MyPage";
 import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
-
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +48,13 @@ function App() {
           path: "/my-page/:id",
           element: <Mypage />,
           errorElement: <ErrorPage />,
+          // children: [
+          //   {
+          //     path: "is-challenge-done",
+          //     element: <IsChallengeDonePage />,
+          //     errorElement: <ErrorPage />,
+          //   },
+          // ],
         },
         {
           path: "is-challenge-done",
@@ -64,17 +70,15 @@ function App() {
     },
 
     {
-      path: "/login",
+      path: "/kakao/callback",
       element: <LoginPage />,
       errorElement: <ErrorPage />,
-      children: [
-        {
-          path: "kakao-auth",
-          element: <KakaoAuth />,
-          errorElement: <ErrorPage />,
-        },
-      ],
     },
+    // {
+    //   path: "/kakao/callback",
+    //   element: <KakaoAuth />,
+    //   errorElement: <ErrorPage />,
+    // },
   ]);
 
   return (
