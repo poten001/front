@@ -48,13 +48,6 @@ function App() {
           path: "/my-page/:id",
           element: <Mypage />,
           errorElement: <ErrorPage />,
-          // children: [
-          //   {
-          //     path: "is-challenge-done",
-          //     element: <IsChallengeDonePage />,
-          //     errorElement: <ErrorPage />,
-          //   },
-          // ],
         },
         {
           path: "is-challenge-done",
@@ -66,7 +59,6 @@ function App() {
           element: <CreateChallengePage />,
           errorElement: <ErrorPage />,
         },
-
         {
           path: "/login",
           element: <LoginPage />,
