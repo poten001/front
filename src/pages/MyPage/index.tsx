@@ -3,13 +3,19 @@ import { CircularProgressBar } from "@tomickigrzegorz/react-circular-progress-ba
 import challengeCardTest from "../../assets/challengeCardTest.svg";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
-
+import Pin from "../../assets/icons/pin.svg?react";
+import timerIcon from "../../assets/icons/timerIcon.svg";
 const Mypage = () => {
   // const [data, setData] = useState([]);
   // 실제로는 get으로 받아온 데이터의 길이(배열?)가 0일때
   // 로그인 할 때는 아예 마이페이지 접근조차 안 되는건지 물어보기(근데 아마 그러겠지...?? 주소가 :id인데...ㅎ
 
   const navigate = useNavigate();
+  const userId = "user123";
+
+  const handleChallengeDone = () => {
+    navigate(`/my-page/${userId}/is-challenge-done`);
+  };
 
   const props = {
     percent: 70, // is require
@@ -34,12 +40,12 @@ const Mypage = () => {
   };
 
   return (
-    <MainLayout>
-      <div className="w-full h-[calc(100vh-58px-80px)] flex flex-col px-5 justify-around pt-9 pb-20 overflow-y-scroll">
+    <MainLayout color="white">
+      <div className="w-full bg-white h-[calc(100vh-58px-80px)] flex flex-col px-5 justify-around pt-9 pb-20 overflow-y-scroll">
         <div className="space-y-4 flex flex-col ">
           <div className="pb-[33px]">
-            <h1 className="font-semibold text-xl">오늘의 챌린지</h1>
-            <p className="text-sm">#오챌완. 오늘도 챌린지 완료해요!</p>
+            <h1 className="font-semibold ">오늘의 챌린지</h1>
+            <p className="text-body-m">#오챌완. 오늘도 챌린지 완료해요!</p>
           </div>
           {/* 데이터 없을 떄 */}
           {/* <div className="bg-primary-200 w-[335px] h-[154px] rounded-xl flex flex-col justify-center items-center space-y-4">
@@ -54,6 +60,10 @@ const Mypage = () => {
 
           {/*  아래는 데이터 있을 때 (타이머 + 버튼 + 완료한 챌린지 이미지와 지금 진행중인 챌린지 카드 이미지) */}
           <div className="flex flex-row w-full justify-around items-center">
+            <div className="relative">
+              <img src={challengeCardTest} width={147} height={185} />
+              <Pin className="absolute top-0" />
+            </div>
             <div className="flex flex-col gap-[17px]">
               <div className="flex relative justify-center items-center gap-7">
                 <CircularProgressBar {...props}>
@@ -68,7 +78,7 @@ const Mypage = () => {
                   >
                     {/* SVG 이미지 */}
                     <img
-                      src="src/assets/icons/timerIcon.svg"
+                      src={timerIcon}
                       style={{
                         width: "8px",
                         height: "9px",
@@ -119,13 +129,11 @@ const Mypage = () => {
               </div>
               <button
                 className="bg-black text-white rounded-[10px] w-[147px] h-[40px]"
-                onClick={() => navigate("/my-page/:id/is-challenge-done")}
+                onClick={handleChallengeDone}
               >
                 #오챌완
               </button>
             </div>
-
-            <img src={challengeCardTest} width={147} height={185} />
           </div>
         </div>
         {/**여기까지가 데이터 있을 때 프로그래스바 보여지는 곳*/}
@@ -152,7 +160,6 @@ const Mypage = () => {
       </div>
     </MainLayout>
   );
-
 };
 
 export default Mypage;
