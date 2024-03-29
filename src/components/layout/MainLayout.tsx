@@ -14,7 +14,7 @@ const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
   const SplashScreen = useRecoilValue(splashScreenState);
 
   const navigate = useNavigate();
-  const location = useLocation(); // 현재 경로를 가져옵니다.
+  const location = useLocation();
 
   // 현재 페이지에 따라 아이콘 색상을 결정하는 함수
   const getIconColor = (page: string) => {
@@ -42,7 +42,7 @@ const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
             <div
               className="flex flex-col items-center
             "
-              onClick={() => navigate("/my-page/:id")}
+              onClick={() => navigate("/my-page")}
             >
               <MyPageIcon
                 width={20}
