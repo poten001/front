@@ -1,4 +1,4 @@
-import plugin from "tailwindcss";
+// import plugin from "tailwindcss";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -41,36 +41,36 @@ export default {
       fontFamily: {
         pretendard: ["pretendard"],
       },
-      fontSize: {
-        "body-s": "10px",
-        "body-m": "14px",
-        "body-l": ["18px", "150%"],
-        h1: ["20px", "150%"],
-        h2: ["18px", "150%"],
-        h3: ["14px", "150%"],
-        "btn-s": "14px",
-        "btn-m": "16px",
-        "btn-l": "18px",
-      },
+      // fontSize: {
+      //   "body-s": "10px",
+      //   "body-m": "14px",
+      //   "body-l": ["18px", "150%"],
+      //   h1: ["20px", "150%"],
+      //   h2: ["18px", "150%"],
+      //   h3: ["14px", "150%"],
+      //   "btn-s": "14px",
+      //   "btn-m": "16px",
+      //   "btn-l": "18px",
+      // },
     },
   },
   plugins: [
-    plugin(function ({ addUtilities, theme }) {
-      const newUtilities = {
-        ".font-body-s": {
-          fontSize: theme("fontSize.body-s")[0],
-          fontWeight: theme("fontWeight.normal"),
-        },
-        ".font-body-m": {
-          fontSize: theme("fontSize.body-m")[0],
-          fontWeight: theme("fontWeight.regular"),
-        },
-        ".font-body-l": {
-          fontSize: theme("fontSize.body-l")[0],
-          fontWeight: theme("fontWeight.semibold"),
-        },
-      };
-      addUtilities(newUtilities, ["responsive", "hover"]);
-    }),
+    // plugin(function ({ addUtilities, theme }) {
+    //   const newUtilities = {
+    //     ".font-body-s": {
+    //       fontSize: theme("fontSize.body-s")[0],
+    //       fontWeight: theme("fontWeight.normal"),
+    //     },
+    //     ".font-body-m": {
+    //       fontSize: theme("fontSize.body-m")[0],
+    //       fontWeight: theme("fontWeight.regular"),
+    //     },
+    //     ".font-body-l": {
+    //       fontSize: theme("fontSize.body-l")[0],
+    //       fontWeight: theme("fontWeight.semibold"),
+    //     },
+    //   };
+    //   addUtilities(newUtilities, ["responsive", "hover"]);
+    // }),
   ],
 };

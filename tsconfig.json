@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": false,
+    "types": ["vite/client"],
 
     /* Bundler mode */
     "moduleResolution": "node",

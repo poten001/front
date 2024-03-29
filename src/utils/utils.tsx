@@ -1,4 +1,4 @@
-// 시간 추출
+import Cookies from "js-cookie";
 
 const getCurrentDateTime = () => {
   const currentTime = new Date();
@@ -18,5 +18,16 @@ const getCurrentDateTime = () => {
     currentSecond,
   };
 };
-
 export default getCurrentDateTime;
+
+export const setCookie = (name: string, value: string) => {
+  Cookies.set(`${name}, ${value}`);
+};
+
+export const getCookie = (name: string) => {
+  Cookies.get(`${name}`);
+};
+
+export const removeCookie = (name: string) => {
+  Cookies.remove(`${name}`);
+};

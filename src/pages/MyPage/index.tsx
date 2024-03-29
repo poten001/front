@@ -45,11 +45,11 @@ const Mypage = () => {
         <div className="space-y-4 flex flex-col ">
           <div className="pb-[33px]">
             <h1 className="font-semibold ">오늘의 챌린지</h1>
-            <p className="text-body-m">#오챌완. 오늘도 챌린지 완료해요!</p>
+            <p className="body-m">#오챌완. 오늘도 챌린지 완료해요!</p>
           </div>
           {/* 데이터 없을 떄 */}
           {/* <div className="bg-primary-200 w-[335px] h-[154px] rounded-xl flex flex-col justify-center items-center space-y-4">
-          <div className="text-body-m text-center text-[#464139]">
+          <div className="body-m text-center text-[#464139]">
             <div>아직 오늘의 챌린지가 없어요.</div>
             <div>새로운 챌린지를 뽑으러 가볼까요?</div>
           </div>
@@ -141,7 +141,7 @@ const Mypage = () => {
         <h1 className="pt-[42px] pb-[25px]">완료한 챌린지</h1>
         {/* *아직 완료한 챌린지가 없을 때(데이터가 없을 때 */}
         {/* <div className="bg-primary-200 w-[335px] h-[154px] rounded-xl flex flex-col justify-center items-center">
-        <div className="text-body-m text-[#464139]">
+        <div className="body-m text-[#464139]">
           아직 완료한 챌린지가 없어요.
         </div>
       </div> */}

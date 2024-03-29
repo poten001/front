@@ -63,7 +63,7 @@ const CreateChallengePage = () => {
           <>
             <div className="flex flex-col gap-1.5 pt-[57px] text-center">
               <h1>오늘의 챌린지를 뽑았어요</h1>
-              <p className="text-body-m">24시간 내에 도전하고 #오챌완!</p>
+              <p className="body-m">24시간 내에 도전하고 #오챌완!</p>
             </div>
 
             <div className="pt-12 pb-20 relative">
@@ -79,7 +79,7 @@ const CreateChallengePage = () => {
                 />
                 <div>
                   <h3 className="font-semibold">챌린져</h3>
-                  <p className="text-body-s text-gray-700">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
+                  <p className="body-s text-gray-700">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
                 </div>
               </div>
 
