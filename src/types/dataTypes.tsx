@@ -1,5 +1,5 @@
 export type sliderMockDataT = {
-  id: number;
+  id: number | string;
   title: string;
   img_url: string;
   content: string;
