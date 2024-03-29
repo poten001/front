@@ -21,13 +21,13 @@ const getCurrentDateTime = () => {
 export default getCurrentDateTime;
 
 export const setCookie = (name: string, value: string) => {
-  Cookies.set(`${name}, ${value}`);
+  return Cookies.set(name, value);
 };
 
 export const getCookie = (name: string) => {
-  Cookies.get(`${name}`);
+  return Cookies.get(name);
 };
 
 export const removeCookie = (name: string) => {
-  Cookies.remove(`${name}`);
+  return Cookies.remove(name);
 };
