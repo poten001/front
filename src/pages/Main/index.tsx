@@ -3,22 +3,33 @@ import CharactorOne from "../../assets/character/orange_girl.png";
 import useModal from "../../hooks/useModal";
 import ModalPortal from "../../components/modal/ModalTotal";
 import Modal from "../../components/modal/Modal";
-import { useSetRecoilState } from "recoil";
-import { challengeLoadingState } from "../../store/challengeLoadingState";
+import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
 import Notification from "../../assets/icons/notification.svg?react";
 import SimpleSlider from "../../components/carousel/Carousel";
+import { categoryState } from "../../store/categoryState";
 
 function Main() {
   const { modal, openModalHandler, closeModalHandler } = useModal();
-  const setChallengeLoading = useSetRecoilState(challengeLoadingState);
+  const category = useRecoilValue(categoryState);
   const navigate = useNavigate();
 
-  const confirmHandler = () => {
-    closeModalHandler();
-    setChallengeLoading(true);
-    navigate("/create-challenge");
+  const confirmHandler = async () => {
+    // 빈 값이라면
+    // 카테고리 선택해라 쨔샤라는 모달이나 알림창
+
+    // 카테고리 값이 빈 값이 아니라면
+    // 모달 닫고
+    // 챌린지 페이지로 이동시킨다
+    // 그러면 챌린지 페이지가 렌더링 될 때 챌린지 로딩화면이 데이터 받아올 때까지 (true)상태
+    // 보이고 다 보여지면 다시 false가 되어서 원래 보이고자 하는 콘텐츠가 보인다
+    // 그러면 카테고리는 전역상태, 뽑은 챌린지 내용, 이미지, 유저사진, 날짜도 하나로 묶어 전역으로 관리해야함(그래야 디테일 페이지에서 보여줄 수 있음)
+
+    if (category !== "") {
+      closeModalHandler();
+      navigate("/create-challenge");
+    }
   };
 
   return (
@@ -56,7 +67,7 @@ function Main() {
                 onConfirm={confirmHandler}
                 onCancel={closeModalHandler}
                 showCancelBtn={true}
-                title="건강 챙기기"
+                title={category}
                 subTitle="이 주제의 챌린지를 뽑아볼까요?"
               />
             </ModalPortal>
