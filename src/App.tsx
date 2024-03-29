@@ -4,7 +4,6 @@ import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
 import { RecoilRoot } from "recoil";
 import Main from "./pages/Main";
-// import KakaoAuth from "./routes/KakaoAuth";
 import LoginPage from "./pages/LoginPage";
 import SettingPage from "./pages/SettingPage";
 import AboutOchaelWanPage from "./pages/SettingPage/About";
@@ -12,6 +11,8 @@ import CreateChallengePage from "./pages/CreateChallengePage";
 import Mypage from "./pages/MyPage";
 import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
 import KakaoAuth from "./routes/KakaoAuth";
+import DoneChallenge from "./pages/MyPage/doneChallenge";
+import HavePage from "./pages/CreateChallengePage/havePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -46,7 +47,7 @@ function App() {
           errorElement: <ErrorPage />,
         },
         {
-          path: "/my-page/:id",
+          path: "/my-page",
           element: <Mypage />,
           errorElement: <ErrorPage />,
         },
@@ -61,6 +62,11 @@ function App() {
           errorElement: <ErrorPage />,
         },
         {
+          path: "/done-challenge/:id",
+          element: <DoneChallenge />,
+          errorElement: <ErrorPage />,
+        },
+        {
           path: "/login",
           element: <LoginPage />,
           errorElement: <ErrorPage />,
@@ -70,6 +76,16 @@ function App() {
     {
       path: "/kakao/callback",
       element: <KakaoAuth />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/error",
+      element: <ErrorPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/have-challenge",
+      element: <HavePage />,
       errorElement: <ErrorPage />,
     },
   ]);
