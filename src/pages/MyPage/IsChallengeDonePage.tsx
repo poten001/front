@@ -1,5 +1,4 @@
 import StatusBarLayout from "../../components/layout/StatusBarLayout";
-import testImg from "../../assets/challengeImg_test.svg";
 import { useNavigate } from "react-router-dom";
 import getCurrentDateTime from "../../utils/utils";
 import { useRef } from "react";
@@ -8,6 +7,10 @@ import saveAs from "file-saver";
 import DownloadIcon from "../../assets/icons/downloadIcon.svg?react";
 import DownArrowIcon from "../../assets/icons/downArrow.svg?react";
 import TimerIcon from "../../assets/icons/timerIcon.svg?react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useRecoilValue } from "recoil";
+import { userDataState } from "../../store/userDataState";
 
 const IsChallengeDonePage = () => {
   const navigate = useNavigate();
@@ -15,6 +18,9 @@ const IsChallengeDonePage = () => {
     getCurrentDateTime();
 
   const divRef = useRef<HTMLDivElement>(null);
+  const accessToken = Cookies.get("accessToken");
+
+  const userData = useRecoilValue(userDataState);
 
   const handleDownload = async () => {
     if (!divRef.current) return;
@@ -33,8 +39,15 @@ const IsChallengeDonePage = () => {
   };
 
   const downloadNavigateHandler = async () => {
-    await handleDownload();
-    navigate("/my-page/:id");
+    await axios
+      .post("https://today-challenge.site/challenge/complete", null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then(() => {
+        handleDownload();
+        console.log("완료");
+        navigate("/");
+      });
   };
 
   return (
@@ -54,16 +67,20 @@ const IsChallengeDonePage = () => {
           <h1>오늘의 챌린지를 완료하셨나요?</h1>
         </div>
         <div className="pt-[32px] relative">
-          <img src={testImg} alt="test" className="w-[305px] h-[385px]" />
+          <img
+            src={userData.challengeImg}
+            alt="test"
+            className="w-[305px] h-[385px]"
+          />
           <div className="absolute left-[30px] top-[68px] flex">
             <img
-              src={testImg}
+              src={userData.memberProfile}
               alt="profile"
               className=" w-[34px] h-[34px] rounded-full"
             />
 
             <div className="">
-              <h3 className="font-semibold ">챌린져</h3>
+              <h3 className="font-semibold ">{userData.memberName}</h3>
               <p className="body-s text-[#4B4B4B]">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
             </div>
           </div>
@@ -80,7 +97,7 @@ const IsChallengeDonePage = () => {
           <h2>{`21시 30분 만에 완료했어요`}</h2>
           <div className="flex flex-row gap gap-1 items-center justify-center">
             <TimerIcon />
-            <p className="body-s">{`2024년 2월 3일 10시 30분`}</p>
+            <p className="body-s">{userData.completeTime}</p>
           </div>
         </div>
       </div>
