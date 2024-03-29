@@ -52,13 +52,13 @@ export const sliderMockData = [
 
 export const aboutService = [
   {
-    id: 435574,
+    id: "435574",
     title: "서비스 목적",
     description:
       "#오챌완은... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
   },
   {
-    id: 408774,
+    id: "408774",
     title: "서비스 목적2",
     description:
       "#오챌완은... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
