@@ -64,7 +64,7 @@ const IsChallengeDonePage = () => {
 
             <div className="">
               <h3 className="font-semibold ">챌린져</h3>
-              <p className="text-body-s text-[#4B4B4B]">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
+              <p className="body-s text-[#4B4B4B]">{`${currentYear}년 ${currentMonth}월 ${currentDate}일 ${currentHour}:${currentMinute}`}</p>
             </div>
           </div>
           <div className="absolute top-[64px] cursor-pointer right-8 ">
@@ -80,7 +80,7 @@ const IsChallengeDonePage = () => {
           <h2>{`21시 30분 만에 완료했어요`}</h2>
           <div className="flex flex-row gap gap-1 items-center justify-center">
             <TimerIcon />
-            <p className="text-body-s">{`2024년 2월 3일 10시 30분`}</p>
+            <p className="body-s">{`2024년 2월 3일 10시 30분`}</p>
           </div>
         </div>
       </div>

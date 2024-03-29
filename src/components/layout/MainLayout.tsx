@@ -49,7 +49,7 @@ const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
                 height={20}
                 fill={getIconColor("my-page")}
               />
-              <p className="text-body-s">마이페이지</p>
+              <p className="body-s">마이페이지</p>
             </div>
             <div
               className="flex flex-col items-center cursor-pointer"
@@ -60,7 +60,7 @@ const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
                 height={20}
                 fill={getIconColor("setting")}
               />
-              <p className="text-body-s">설정</p>
+              <p className="body-s">설정</p>
             </div>
           </div>
         </div>

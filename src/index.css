@@ -27,17 +27,37 @@ body {
     font-family: pretendard, sans-serif;
   }
   h1 {
-    @apply text-[1.25rem];
+    @apply text-[1.25rem] leading-[150%] font-semibold;
   }
   h2 {
-    @apply text-[1.125rem];
+    @apply text-[1.125rem] leading-[150%] font-semibold;
   }
   h3 {
-    @apply text-[.875rem];
+    @apply text-[.875rem] leading-[150%];
   }
 }
 
 @layer components {
+  .body-s {
+    @apply text-[.625rem] font-medium leading-none;
+  }
+  .body-m {
+    @apply text-[.875rem] leading-none;
+  }
+  .body-l {
+    @apply text-[1.125rem] leading-[150%] font-semibold;
+  }
+
+  .btn-s {
+    @apply test-[.875rem] leading-none font-semibold;
+  }
+  .btn-m {
+    @apply test-[1rem] leading-none font-semibold;
+  }
+  .btn-l {
+    @apply test-[1.125rem] leading-none font-semibold;
+  }
+
   .slider-container {
     width: 100vw;
     height: 300px;

@@ -1,15 +1,18 @@
 import LoginImage from "../../assets/loginImage.svg?react";
 import KaKaoIcon from "../../assets/icons/kakaoIcon.svg?react";
 import StatusBarLayout from "../../components/layout/StatusBarLayout";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const REST_API_KEY = import.meta.env.NEXT_PUBLIC_KAKAO_LOGIN_REST_API_KEY;
-  const REDIRECT_URL = import.meta.env.NEXT_PUBLIC_KAKAO_LOGIN_REDIRECT_URI;
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_LOGIN_REST_API_KEY;
+  const REDIRECT_URL = import.meta.env.VITE_KAKAO_LOGIN_REDIRECT_URI;
   const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
   const kakaoLoginHandler = () => {
     window.location.href = link;
   };
+
+  const navigate = useNavigate();
 
   return (
     <StatusBarLayout showButton={false} color="white">
@@ -35,7 +38,12 @@ const LoginPage = () => {
             <KaKaoIcon />
             <span>카카오 계정으로 시작하기</span>
           </button>
-          <p className="text-[#807E76] text-sm">다음에 할래요</p>
+          <p
+            className="text-[#807E76] text-sm cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            다음에 할래요
+          </p>
         </div>
       </div>
     </StatusBarLayout>

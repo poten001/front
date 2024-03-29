@@ -11,6 +11,7 @@ import AboutOchaelWanPage from "./pages/SettingPage/About";
 import CreateChallengePage from "./pages/CreateChallengePage";
 import Mypage from "./pages/MyPage";
 import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
+import KakaoAuth from "./routes/KakaoAuth";
 
 function App() {
   const router = createBrowserRouter([
@@ -66,12 +67,11 @@ function App() {
         },
       ],
     },
-
-    // {
-    //   path: "/kakao/callback",
-    //   element: <KakaoAuth />,
-    //   errorElement: <ErrorPage />,
-    // },
+    {
+      path: "/kakao/callback",
+      element: <KakaoAuth />,
+      errorElement: <ErrorPage />,
+    },
   ]);
 
   return (
