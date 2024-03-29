@@ -1,4 +1,3 @@
-// import { useRouteError } from "react-router-dom";
 import StatusBarLayout from "../components/layout/StatusBarLayout";
 import ErrorImage from "../assets/404.svg?react";
 import { useNavigate } from "react-router-dom";
