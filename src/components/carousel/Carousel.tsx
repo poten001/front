@@ -1,6 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { images } from "../../assets/cards/category-cards";
+import { useSetRecoilState } from "recoil";
+import { categoryState } from "../../store/categoryState";
 
 export default function SimpleSlider() {
   const settings = {
@@ -12,34 +15,36 @@ export default function SimpleSlider() {
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 500,
     variableWidth: true,
     focusOnSelect: true,
+  };
+
+  const setCategory = useSetRecoilState(categoryState);
+
+  const mouseEnterHandler = (id) => {
+    setCategory(id);
+    console.log("id", id);
   };
 
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        <div className="slick-slider-item ">
-          <div className="fixed-size bg-red-400">
-            <h3>1</h3>
-          </div>
-        </div>
-        <div className="slick-slider-item ">
-          <div className="fixed-size bg-green-400">
-            <h3>2</h3>
-          </div>
-        </div>
-        <div className="slick-slider-item ">
-          <div className="fixed-size bg-blue-400">
-            <h3>3</h3>
-          </div>
-        </div>
-        <div className="slick-slider-item ">
-          <div className="fixed-size bg-pink-400">
-            <h3>4</h3>
-          </div>
-        </div>
+        {images.map((img, idx) => {
+          return (
+            <div
+              key={idx}
+              className="slick-slider-item "
+              onMouseEnter={() => mouseEnterHandler(img.id)}
+            >
+              <img
+                src={img.src}
+                id={img.id}
+                className="fixed-size w-full h-auto object-cover"
+              />
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );
