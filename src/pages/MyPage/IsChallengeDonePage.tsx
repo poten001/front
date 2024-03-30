@@ -11,6 +11,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRecoilValue } from "recoil";
 import { userDataState } from "../../store/userDataState";
+import useRemainingTime from "../../hooks/useRemainTime";
 
 const IsChallengeDonePage = () => {
   const navigate = useNavigate();
@@ -49,6 +50,8 @@ const IsChallengeDonePage = () => {
         navigate("/");
       });
   };
+
+  const remainTime = useRemainingTime();
 
   return (
     <StatusBarLayout
@@ -91,13 +94,16 @@ const IsChallengeDonePage = () => {
               onClick={downloadNavigateHandler}
             />
           </div>
+          <div className="body-l absolute bottom-[40px] w-full left-0 right-0 m-auto text-center text-nowrap break-words">
+            {userData.challengeTitle}
+          </div>
         </div>
-        <div className="flex flex-col justify-center items-center gap-[14px]">
+        <div className="flex flex-col pt-[52px] justify-center items-center gap-[14px]">
           <DownArrowIcon />
-          <h2>{`21시 30분 만에 완료했어요`}</h2>
+          <h2>챌린지 종료까지 남은 시간</h2>
           <div className="flex flex-row gap gap-1 items-center justify-center">
             <TimerIcon />
-            <p className="body-s">{userData.completeTime}</p>
+            <p className="body-m text-secondary-500">{remainTime}</p>
           </div>
         </div>
       </div>
