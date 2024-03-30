@@ -98,7 +98,7 @@ const DoneChallenge = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center gap-[14px]">
+        <div className="flex flex-col pt-[52px]  justify-center items-center gap-[14px]">
           <DownArrowIcon />
           <h2>{userData.expireTime}</h2>
           <div className="flex flex-row gap gap-1 items-center justify-center">
