@@ -13,8 +13,11 @@ import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
 import KakaoAuth from "./routes/KakaoAuth";
 import DoneChallenge from "./pages/MyPage/doneChallenge";
 import HavePage from "./pages/CreateChallengePage/havePage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const queryClient = new QueryClient();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -91,9 +94,11 @@ function App() {
   ]);
 
   return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 
