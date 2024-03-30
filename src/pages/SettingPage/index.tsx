@@ -8,13 +8,14 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import useLoggedIn from "../../hooks/useLoggedIn";
 import axios from "axios";
+import defaultProfile from "../../assets/character/orange_girl.png";
 
 const SettingPage = () => {
   const navigate = useNavigate();
   const { login, setLogin } = useLoggedIn();
   const [profile, setProfile] = useState({
     email: "로그인 후 새로운 일상 챌린지를 시작하세요",
-    memberName: "비로그인",
+    memberName: "로그인 / 회원가입 >",
     profileUrl: "",
   });
   const [editName, setEditName] = useState(false);
@@ -111,16 +112,23 @@ const SettingPage = () => {
       <div className="flex w-full h-[calc(100vh-58px-80px)] flex-col bg-white">
         <div className="w-full h-[330px] flex flex-col bg-primary-500 justify-center items-center gap-3 relative">
           <img
-            src={profile.profileUrl ? profile.profileUrl : "기본이미지 필요"}
+            src={profile.profileUrl ? profile.profileUrl : defaultProfile}
             width={100}
             height={100}
-            className="rounded-full bg-white"
+            className={`rounded-full bg-white ${
+              !profile.profileUrl ? "p-2" : ""
+            }`}
           />
 
           <div className="flex flex-row items-center justify-center z-10">
             <div className="flex items-center justify-center gap-2">
               {!editName ? (
-                <h2>{profile.memberName}</h2>
+                <h2
+                  onClick={!login ? () => navigate("/login") : undefined}
+                  style={{ cursor: !login ? "pointer" : "default" }}
+                >
+                  {profile.memberName}
+                </h2>
               ) : (
                 <input
                   name="memberName"
@@ -129,17 +137,19 @@ const SettingPage = () => {
                   onChange={nameChangeHandler}
                 />
               )}
-
-              <PencilIcon
-                width={14}
-                height={14}
-                className="cursor-pointer"
-                onClick={toggleEdit}
-              />
+              {login && (
+                <PencilIcon
+                  width={14}
+                  height={14}
+                  className="cursor-pointer"
+                  onClick={toggleEdit}
+                />
+              )}
             </div>
           </div>
           <div className="flex flex-row items-center gap-2 z-10">
-            <KakaoIconTwo width={18} height={18} />
+            {login && <KakaoIconTwo width={18} height={18} />}
+
             <span className="text-neutral-700">{profile.email}</span>
           </div>
           <SettingPageWaveBg className="absolute top-[-220px] left-0 w-full " />
