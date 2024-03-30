@@ -103,7 +103,10 @@ const Mypage = () => {
                 <div>아직 오늘의 챌린지가 없어요.</div>
                 <div>새로운 챌린지를 뽑으러 가볼까요?</div>
               </div>
-              <button className="px-4 py-2 bg-black text-white rounded-[10px] w-[147px] h-[40px]">
+              <button
+                onClick={() => navigate("/create-challenge")}
+                className="px-4 py-2 bg-black cursor-pointer text-white rounded-[10px] w-[147px] h-[40px]"
+              >
                 챌린지 뽑기
               </button>
             </div>
