@@ -13,10 +13,8 @@ instance.interceptors.request.use(
 
     if (!accessToken && refreshToken) {
       try {
-        // 리프레시 토큰을 Bearer 토큰 없이 URL 파라미터로 전송
         const response = await axios.post(
-          `https://today-challenge.site/auth/refresh`,
-          {},
+          `https://today-challenge.site/auth/refresh?refreshToken=${refreshToken}`,
           {
             params: {
               refreshToken: refreshToken,
@@ -26,7 +24,9 @@ instance.interceptors.request.use(
 
         accessToken = response.data.accessToken;
 
-        Cookies.set("accessToken", accessToken);
+        const expires = 1800 / 86400;
+
+        Cookies.set("accessToken", accessToken, { expires: expires });
 
         // 새로운 엑세스 토큰으로 현재 요청의 헤더 설정
         config.headers["Authorization"] = `Bearer ${accessToken}`;
