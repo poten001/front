@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import useLoggedIn from "../../hooks/useLoggedIn";
 import axios from "axios";
-import defaultProfile from "../../assets/character/orange_girl.png";
+import defaultProfile from "../../assets/character/default_profile.png";
+import { instance } from "../../axios/axios";
+import useModal from "../../hooks/useModal";
+import ModalPortal from "../../components/modal/ModalTotal";
+import Modal from "../../components/modal/Modal";
 
 const SettingPage = () => {
   const navigate = useNavigate();
@@ -19,13 +23,14 @@ const SettingPage = () => {
     profileUrl: "",
   });
   const [editName, setEditName] = useState(false);
+  const { modal, openModalHandler, closeModalHandler } = useModal();
 
   useEffect(() => {
     const getProfile = async () => {
       const accessToken = Cookies.get("accessToken");
       if (login) {
         try {
-          const response = await axios.get(
+          const response = await instance.get(
             "https://today-challenge.site/member",
             {
               headers: { Authorization: `Bearer ${accessToken}` },
@@ -94,7 +99,7 @@ const SettingPage = () => {
     }
 
     try {
-      const response = await axios.patch(
+      const response = await instance.patch(
         "https://today-challenge.site/member",
         body,
         {
@@ -189,11 +194,23 @@ const SettingPage = () => {
               >
                 로그아웃
               </p>
-              <p className="text-secondary-600 ">서비스 탈퇴</p>
+              <p className="text-secondary-600" onClick={openModalHandler}>
+                서비스 탈퇴
+              </p>
             </div>
           )}
         </div>
       </div>
+      {modal && (
+        <ModalPortal>
+          <Modal
+            title="준비중입니다"
+            showCancelBtn={false}
+            onCancel={closeModalHandler}
+            onConfirm={closeModalHandler}
+          />
+        </ModalPortal>
+      )}
     </MainLayout>
   );
 };
