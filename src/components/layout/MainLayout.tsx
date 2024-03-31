@@ -4,6 +4,7 @@ import HomeIcon from "../../assets/icons/home-icon.svg?react";
 import { useRecoilValue } from "recoil";
 import { splashScreenState } from "../../store/splashScreenState";
 import { useLocation, useNavigate } from "react-router-dom";
+import { challengeLoadingState } from "../../store/challengeLoadingState";
 
 type MainPageLayoutT = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ type MainPageLayoutT = {
 
 const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
   const SplashScreen = useRecoilValue(splashScreenState);
+  const challengeLoading = useRecoilValue(challengeLoadingState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,7 +29,7 @@ const MainLayout = ({ children, color = "primary-500" }: MainPageLayoutT) => {
 
       {children}
 
-      {!SplashScreen && (
+      {!SplashScreen && !challengeLoading && (
         <div className="w-full h-[80px] shadow-tab flex relative items-center">
           <div className="absolute top-[-18px] left-1/2 transform -translate-x-1/2">
             <div
