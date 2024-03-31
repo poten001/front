@@ -5,6 +5,7 @@ type ModalT = {
   onConfirm: () => void;
   onCancel: () => void;
 };
+
 const Modal = ({
   title,
   subTitle,
@@ -40,7 +41,6 @@ const Modal = ({
       </div>
     </div>
   );
-
 };
 
 export default Modal;
