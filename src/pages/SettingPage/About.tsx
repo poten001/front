@@ -13,9 +13,7 @@ const AboutOchaelWanPage = () => {
   const [datas, setDatas] = useState(aboutData);
 
   useEffect(() => {
-    if (location.pathname === "/about-ochaelwan") {
-      setDatas(aboutData);
-    } else if (location.pathname === "/terms-of-service") {
+    if (location.pathname === "/terms-of-service") {
       setDatas(termsOfServiceData);
     } else if (location.pathname === "/private-policy") {
       setDatas(privatePolicyData);
@@ -25,11 +23,13 @@ const AboutOchaelWanPage = () => {
   return (
     <MainLayout color="white">
       <SettingPageLayout>
-        <div>
+        <div className="flex flex-col text-left gap-4">
           {datas.map((data) => (
             <div key={data.id} className="flex flex-col">
-              <div>{data.title}</div>
-              <div>{data.description}</div>
+              <h3 className="font-semibold">{data.title}</h3>
+              <p className="body-m leading-5 text-neutral-600">
+                {data.description}
+              </p>
             </div>
           ))}
         </div>
