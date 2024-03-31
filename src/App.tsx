@@ -2,7 +2,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/Root";
 import ErrorPage from "./routes/ErrorPage";
-import { RecoilRoot } from "recoil";
 import Main from "./pages/Main";
 import LoginPage from "./pages/LoginPage";
 import SettingPage from "./pages/SettingPage";
@@ -13,11 +12,9 @@ import IsChallengeDonePage from "./pages/MyPage/IsChallengeDonePage";
 import KakaoAuth from "./routes/KakaoAuth";
 import DoneChallenge from "./pages/MyPage/doneChallenge";
 import HavePage from "./pages/CreateChallengePage/havePage";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AboutService from "./pages/SettingPage/About-service";
 
 function App() {
-  const queryClient = new QueryClient();
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -36,7 +33,7 @@ function App() {
         },
         {
           path: "/about-ochaelwan",
-          element: <AboutOchaelWanPage />,
+          element: <AboutService />,
           errorElement: <ErrorPage />,
         },
         {
@@ -93,13 +90,7 @@ function App() {
     },
   ]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <RouterProvider router={router} />
-      </RecoilRoot>
-    </QueryClientProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
