@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { getCookie, setCookie } from "../utils/utils";
 import Cookies from "js-cookie";
 
 export const instance = axios.create({
