@@ -1,3 +1,5 @@
+import about_image from "../assets/about_ochaelwan.png";
+
 export const sliderMockData = [
   {
     id: "23",
@@ -52,16 +54,9 @@ export const sliderMockData = [
 
 export const aboutService = [
   {
-    id: "435574",
-    title: "서비스 목적",
-    description:
-      "#오챌완은... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
-  },
-  {
-    id: "408774",
-    title: "서비스 목적2",
-    description:
-      "#오챌완은... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
+    id: "about_img",
+    title: "",
+    description: about_image,
   },
 ];
 
@@ -212,14 +207,102 @@ export const termsOfService = [
 export const privacyPolicy = [
   {
     id: "6430584",
-    title: "개인정보 처리방침",
+    title: "1. 개인정보 수집 항목",
     description:
-      "#오챌완은 이용자의 개인정보를 처리함에 있어... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
+      "아이디(이메일 주소), 이름(닉네임), 사진(프로필 사진)을 필수 항목으로 수집합니다.",
   },
   {
-    id: "894012",
-    title: "개인정보 처리방침2",
-    description:
-      "#오챌완은 이용자의 개인정보를 처리함에 있어... Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure repellendus officia non blanditiis earum. Nulla ullam mollitia enim provident optio ipsa dolor sunt quo nihil molestias animi illum, aut suscipit",
+    id: "644",
+    title: "2. 개인정보 수집 방법",
+    description: `
+    빅스텝은 다음과 같은 경로로 개인정보를 수집합니다.
+
+    1. 회원가입 및 서비스 이용 과정에서 이용자가 약관 및 개인정보 수집에 동의하고 직접 정보를 입력하는 경우 (카카오, 네이버, 메타 등 소셜 로그인 포함)
+    2. 제휴 서비스 및 단체로부터 개인정보를 제공받은 경우
+    3. 고객센터를 통한 상담과정에서 메일, 전화, 문자 등을 통해 개인정보를 수집하는 경우
+    4. 이벤트 등 신청 과정에서 추가로 개인정보 수집이 발생하는 경우
+    
+    다만, IP 주소, 쿠키, 기기정보, 방문일시, 부정이용기록 등의 경우 서비스를 이용하는 과정에서 자동으로 생성되어 수집될 수 있습니다.    
+    `,
+  },
+  {
+    id: "67650",
+    title: "3. 수집한 개인정보의 이용",
+    description: `
+    빅스텝은 회원관리, 서비스 개발 및 제공, 안전한 서비스 이용환경 구축 등 아래 목적으로만 개인정보를 이용합니다.
+
+    1. 회원 가입 의사 확인, 연령 확인 및 법정대리인 동의 진행, 이용자 및 법정대리인의 본인 확인, 이용자 의사 확인, 이용자 식별, 문의사항에 대한 상담, 회원탈퇴 의사 확인 및 회원관리를 위한 목적
+    2. 서비스 제공(광고 포함), 인구통계학적 분석, 서비스 방문 및 이용기록의 분석, 개인화 서비스 제공, 신규 서비스 요소의 발굴 및 기존 서비스 개선, 마케팅 활용을 위한 목적
+    3. 서비스 관련 알림 및 안내, 약관 개정 등 고지사항 전달, 법령 및 서비스 이용약관을 위반하는 이용자에 대한 이용 제한 조치, 부정 이용 행위를 포함한 서비스 운영에 지장을 주는 행위에 대한 방지 및 제재, 계정도용 및 부정거래 방지, 분쟁을 위한 기록 보존 목적 등    
+  `,
+  },
+  {
+    id: "4234674",
+    title: "4. 개인정보의 제공 및 위탁",
+    description: `
+    빅스텝은 이용자에게 더 나은 서비스를 제공하기 위해 업무 중 일부를 외부에 위탁하고 있습니다. 빅스텝은 위탁받은 업체가 개인정보보호법에 따라 개인정보를 안전하게 처리하도록 필요한 사항을 규정하고 관리/감독을 하고 있습니다.
+
+    | 수탁업체 | 위탁업무 내용 |
+    | --- | --- |
+    | Amazon Web Services | 데이터 보관 |  
+    `,
+  },
+  {
+    id: "58450",
+    title: "5. 개인정보의 보유기간 및 파기",
+    description: `
+    빅스텝은 이용자의 정보를 회원탈퇴 또는 이용자로부터 개인정보 수집 시 동의받은 보유 및 이용기간 내에서 개인정보를 처리합니다. 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다. 단, 빅스텝 내부 방침 및 관련 법령에서 정한 보관기간이 있을 경우 일정 기간동안 보관 후 파기 됩니다.
+
+    종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각하여 파기하고, 전자적 형태로 저장된 기록은 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
+    
+    1. 빅스텝 내부 방침에 의한 사유
+    
+    | 보존항목 | 보존사유 | 보유기간 |
+    | --- | --- | --- |
+    | 부정이용기록이있는 사용자의 정보(아이디, 이름, 기기식별값, 부정이용기록) | 동일인 식별 및 부정이용 방지 | 5년 |
+    1. 관련 법령에 의한 사유
+    
+    | 보존항목 | 근거법령 | 보유기간 |
+    | --- | --- | --- |
+    | 본인 확인에 대한 기록 | 정보통신 이용촉진 및 정보보호 등에 관한 법률 | 6개월 |
+    | 로그인 기록 | 통신비밀보호법 | 3개월 |
+    
+    `,
+  },
+  {
+    id: "432328",
+    title: "6. 이용자의 권리와 행사 방법",
+    description: `
+    이용자는 언제든지 서비스에서 자신의 개인정보를 조회하거나 수정할 수 있습니다. 이용자는 빅스텝에게 요청하거나 서비스의 ‘회원탈퇴’ 등을 통해 개인정보의 수집 및 이용동의를 철회할 수 있으며, 수집된 개인정보는 철회 즉시 파기됩니다.
+
+    `,
+  },
+  {
+    id: "6412367",
+    title: "7. 개인정보 보호책임자 및 담당자 안내",
+    description: `
+    빅스텝은 이용자의 개인정보 관련 문의사항 및 불만 처리 등을 위하여 아래와 같이 개인정보 보호책임자 및 담당자를 지정하고 있습니다.
+
+    - 책임자 : 김채원
+    - 문의 : [kimlove9182@gmail.com](mailto:kimlove9182@gmail.com)
+    
+    기타 개인정보 침해에 대한 신고나 상담이 필요한 경우에 아래 기관에 문의 가능합니다.
+    
+    개인정보침해신고센터 (privacy.kisa.or.kr / 국번없이 118)
+    
+    대검찰청 사이버수사과 (www.spo.go.kr / 국번없이 1301)
+    
+    경찰청 사이버수사국 (https://ecrm.police.go.kr/minwon/main / 국번없이 182)
+    
+    개인정보분쟁조정위원회(https://www.kopico.go.kr / 국번없이 1833-6972)
+    
+    `,
+  },
+  {
+    id: "64378249",
+    title: "8. 개정 전 고지 의무",
+    description: `본 개인정보처리방침의 내용 추가, 삭제 및 수정이 있을 경우 서비스 내 공지사항을 통해 공지하고, 이용자가 언제든지 변경된 사항을 쉽게 알아볼 수 있도록 공개하겠습니다.
+    이 개인정보처리방침 공고는 <2024.4.1>부터 시행됩니다.
+    `,
   },
 ];
