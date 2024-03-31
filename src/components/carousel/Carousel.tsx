@@ -10,12 +10,11 @@ export default function SimpleSlider() {
     infinite: true,
     className: "center",
     centerMode: true,
-    centerPadding: "30px",
+    centerPadding: "0px",
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 2000,
-    autoplaySpeed: 500,
     variableWidth: true,
     focusOnSelect: true,
   };
@@ -24,7 +23,6 @@ export default function SimpleSlider() {
 
   const mouseEnterHandler = (id) => {
     setCategory(id);
-    console.log("id", id);
   };
 
   return (
@@ -34,7 +32,7 @@ export default function SimpleSlider() {
           return (
             <div
               key={idx}
-              className="slick-slider-item "
+              className="slick-slider-item rounded-[12px]"
               onMouseEnter={() => mouseEnterHandler(img.id)}
             >
               <img
