@@ -10,5 +10,6 @@ export const userDataState = atom({
     challengeTitle: "",
     challengeImg: "",
     completeTime: "",
+    takenTime: "",
   },
 });
