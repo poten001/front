@@ -12,11 +12,11 @@ const useLoggedIn = () => {
     const accessToken = Cookies.get("accessToken");
 
     if (accessToken) {
-      setLogin(true);
+      setLogin(() => true);
     } else {
-      setLogin(false);
+      setLogin(() => false);
     }
-  }, []);
+  }, [login]);
   return { login, setLogin };
 };
 
