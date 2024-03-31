@@ -4,11 +4,14 @@ import MainLayout from "../../components/layout/MainLayout";
 import Pin from "../../assets/icons/pin.svg?react";
 import timerIcon from "../../assets/icons/timerIcon.svg";
 import { useRecoilState } from "recoil";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { userDataState } from "../../store/userDataState";
 import { completedChallengeState } from "../../store/completeChallengeState";
+import { instance } from "../../axios/axios";
+import useRemainingTime from "../../hooks/useRemainTime";
+import useLoggedIn from "../../hooks/useLoggedIn";
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -18,8 +21,14 @@ const Mypage = () => {
   const [completedChallenge, setCompletedChallenge] = useRecoilState(
     completedChallengeState
   );
+  const { remainTime, remainingTimePercent } = useRemainingTime();
+  const { login } = useLoggedIn();
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate("/login");
+      return;
+    }
     const fetchData = async () => {
       try {
         const inProgressChallengeUrl =
@@ -30,12 +39,12 @@ const Mypage = () => {
         // 두 API 요청을 동시에 처리
         const [inProgressChallengeResponse, completedChallengesResponse] =
           await Promise.all([
-            axios.get(inProgressChallengeUrl, {
+            instance.get(inProgressChallengeUrl, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
             }),
-            axios.get(completedChallengesUrl, {
+            instance.get(completedChallengesUrl, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
@@ -59,16 +68,17 @@ const Mypage = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [login, hasChallengeInProgress]);
 
   const handleChallengeDone = () => {
     navigate(`/is-challenge-done`);
   };
 
   const props = {
-    percent: 70, // is require
-    colorSlice: " #FF6740",
-    colorCircle: "#FFC0B0",
+    id: 0,
+    percent: remainingTimePercent, // is require
+    colorSlice: "#FF6740",
+    colorCircle: " #FFC0B0",
     fontColor: "#365b74",
     fontSize: "10px",
     fontWeight: 400,
@@ -113,18 +123,16 @@ const Mypage = () => {
           )}
           {hasChallengeInProgress && (
             <div className="flex flex-row w-full justify-around items-center">
-              <div className="relative">
+              <div className="relative w-[147px] h-[185px] flex flex-col justify-center items-center">
                 <img
                   src={userData.challengeImg}
-                  width={147}
-                  height={185}
-                  className="cursor-pointer"
+                  className="cursor-pointer object-cover rounded-[10px] shadow-xl"
                   onClick={() => navigate("/is-challenge-done")}
                 />
-                {/* // 챌린지 도전 항목이 있는지 체크하고 // 있다면
-                is-challenge-done으로 이동 // 그리고 이동 후 보여지는 내용은
-                어차피 userData에 ㅈㅓ장해놔서 그거 쓰면 됨 */}
-                <Pin className="absolute top-0" />
+                <Pin className="absolute top-[-12px] left-0" />
+                <p className="absolute bottom-[15px]  body-s text-center px-5 break-keep w-full h-[20px] ">
+                  {userData.challengeTitle}
+                </p>
               </div>
               <div className="flex flex-col gap-[17px]">
                 <div className="flex relative justify-center items-center gap-7">
@@ -138,7 +146,6 @@ const Mypage = () => {
                         transform: "translate(-50%, -50%)",
                       }}
                     >
-                      {/* SVG 이미지 */}
                       <img
                         src={timerIcon}
                         style={{
@@ -149,7 +156,6 @@ const Mypage = () => {
                         }}
                         alt="타이머 아이콘"
                       />
-                      {/* 첫 번째 텍스트 */}
                       <div
                         style={{
                           fontFamily: "Pretendard Variable",
@@ -167,7 +173,6 @@ const Mypage = () => {
                         챌린지 종료까지
                       </div>
 
-                      {/* 두 번째 텍스트 */}
                       <div
                         style={{
                           width: "100%",
@@ -184,7 +189,7 @@ const Mypage = () => {
                           transform: "translateX(-50%)", // 좌우 중앙 정렬을 위해 X축 기준으로 -50% 이동
                         }}
                       >
-                        10시간 20분 30초
+                        {remainTime}
                       </div>
                     </div>
                   </CircularProgressBar>
@@ -216,15 +221,18 @@ const Mypage = () => {
         ) : (
           <div className="grid grid-cols-2 gap-y-[34px] w-full gap-x-[27px]">
             {completedChallenge.map((val) => (
-              <img
-                key={val.id}
-                src={val.challengeImg}
-                width={147}
-                height={185}
-                alt="completedImg"
-                onClick={() => navigate(`/done-challenge/${val.id}`)}
-                className="cursor-pointer"
-              />
+              <div className="w-[147] h-[185] flex flex-col relative justify-center items-center">
+                <img
+                  key={val.id}
+                  src={val.challengeImg}
+                  alt="completedImg"
+                  onClick={() => navigate(`/done-challenge/${val.id}`)}
+                  className="cursor-pointer rounded-[10px] shadow-xl object-cover"
+                />
+                <p className="absolute bottom-[15px]  body-s text-center px-5 break-keep w-full h-[20px] ">
+                  {val.challengeTitle}
+                </p>
+              </div>
             ))}
           </div>
         )}
