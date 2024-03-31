@@ -4,119 +4,132 @@ import { challengeLoadingState } from "../../store/challengeLoadingState";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DownloadIcon from "../../assets/icons/downloadIcon.svg?react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import Cookies from "js-cookie";
 import { userDataState } from "../../store/userDataState";
 import roulette from "../../assets/roulette.gif";
 import useModal from "../../hooks/useModal";
 import ModalPortal from "../../components/modal/ModalTotal";
 import Modal from "../../components/modal/Modal";
-import useLoggedIn from "../../hooks/useLoggedIn";
 import { categoryState } from "../../store/categoryState";
+import { instance } from "../../axios/axios";
+import { useMutation } from "@tanstack/react-query";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
+// import { format } from "date-fns";
+// import { ko } from "date-fns/locale";
 
 const CreateChallengePage = () => {
-  const [challengeLoading, setChallengeLoading] = useRecoilState(
-    challengeLoadingState
-  );
+  const challengeLoading = useRecoilValue(challengeLoadingState);
 
   const navigate = useNavigate();
-  const [userData, setUserData] = useRecoilState(userDataState);
+  const userData = useRecoilValue(userDataState);
   const accessToken = Cookies.get("accessToken");
-  const { login } = useLoggedIn();
   const category = useRecoilValue(categoryState);
-  const date = new Date(userData.startTime);
 
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
   const { modal, setModal, closeModalHandler } = useModal();
 
-  const mainApi = async () => {
-    if (!accessToken) {
-      navigate("/login");
-      return;
-    }
-    setChallengeLoading(true); // api 호출 전에 true로 변경하여 로딩화면 띄우기
-    const body = { category: category };
-    console.log("body", body);
-    try {
-      if (!accessToken) {
-        navigate("/login");
-        return;
-      }
+  // const drawChallenge = async (accessToken, body) => {
+  //   const response = await instance.post(
+  //     "https://today-challenge.site/challenge/draw",
+  //     body,
+  //     {
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     }
+  //   );
+  //   return response.data;
+  // };
 
-      await axios
-        .post("https://today-challenge.site/challenge/draw", body, {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          setTimeout(() => {
-            setChallengeLoading(false);
-            const {
-              memberName,
-              memberProfile,
-              startTime,
-              expireTime,
-              challengeTitle,
-              challengeImg,
-            } = res.data;
-
-            setUserData({
-              memberName,
-              memberProfile,
-              startTime,
-              expireTime,
-              challengeTitle,
-              challengeImg,
-              completeTime: "",
-            });
-            console.log("res", res);
-          }, 3000);
-        });
-    } catch (err) {
-      console.log("err", err);
-      navigate("/error");
-    }
-  };
+  // const { mutate: drawChallengeMutation } = useMutation({
+  //   mutationFn: () => drawChallenge(accessToken, { category: category }),
+  //   onSuccess: (data) => {
+  //     const {
+  //       memberName,
+  //       memberProfile,
+  //       startTime,
+  //       expireTime,
+  //       challengeTitle,
+  //       challengeImg,
+  //     } = data;
+  //     setUserData({
+  //       memberName,
+  //       memberProfile,
+  //       startTime,
+  //       expireTime,
+  //       challengeTitle,
+  //       challengeImg,
+  //       completeTime: "",
+  //       takenTime: "",
+  //     });
+  //     // console.log("startTime", userData.startTime);
+  //   },
+  //   onError: (error) => {
+  //     const axiosError = error as AxiosError;
+  //     if (axiosError.response?.data === "이미 도전 중인 챌린지가 있습니다.") {
+  //       navigate("/my-page");
+  //     } else {
+  //       console.log("err", error);
+  //       navigate("/error");
+  //     }
+  //     console.log("error", error);
+  //   },
+  //   onSettled: () => {
+  //     setChallengeLoading(false);
+  //   },
+  // });
 
   useEffect(() => {
-    mainApi();
-  }, [login]);
+    if (!accessToken) {
+      return navigate("/login");
+    }
+  }, []);
 
-  const modalHandler = () => {
-    setModal((prev) => !prev);
-    tryChallengeHandler();
-  };
-
-  const tryChallengeHandler = async () => {
+  // 도전하겠냐 말겠냐
+  const tryChallengeHandler = async (accessToken) => {
     try {
-      if (!accessToken) {
-        navigate("/login");
-        return;
-      }
-
-      await axios
-        .post("https://today-challenge.site/challenge/try", null, {
+      const response = await instance.post(
+        "https://today-challenge.site/challenge/try",
+        null,
+        {
           headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then(() => {
-          navigate("/my-page");
-        });
+        }
+      );
+      return response;
     } catch (err) {
       const axiosError = err as AxiosError;
-      if (
-        axiosError.response?.data === "이미 도전 중인 챌린지가 있습니다." ||
-        axiosError.response?.status === 409
-      ) {
-        navigate("/have-challenge");
+      if (axiosError.response?.data === "이미 도전 중인 챌린지가 있습니다.") {
+        navigate("/my-page");
       } else {
         console.log("err", err);
         navigate("/error");
       }
     }
   };
+  const mutation = useMutation({
+    mutationFn: () => tryChallengeHandler(accessToken),
+    onSuccess: () => navigate("/my-page"),
+    onError: (error) => {
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.data === "이미 도전 중인 챌린지가 있습니다.") {
+        navigate("/my-page");
+      } else {
+        console.log("err", error);
+        navigate("/error");
+      }
+    },
+  });
+
+  const modalHandler = () => {
+    setModal((prev) => !prev);
+    mutation.mutate();
+  };
+
+  const formattedDate = format(
+    new Date(userData.startTime),
+    "yyyy년 MM월 dd일 HH:mm",
+    { locale: ko }
+  );
+  console.log("formattedDate", formattedDate);
 
   return (
     <StatusBarLayout
@@ -142,7 +155,7 @@ const CreateChallengePage = () => {
             {modal && (
               <ModalPortal>
                 <Modal
-                  onConfirm={tryChallengeHandler}
+                  onConfirm={() => tryChallengeHandler}
                   onCancel={closeModalHandler}
                   showCancelBtn={true}
                   title="이 챌린지에 도전하시겠어요?"
@@ -159,7 +172,7 @@ const CreateChallengePage = () => {
               <img
                 src={userData.challengeImg}
                 alt="challengeImg"
-                className="w-[305px] h-[385px]"
+                className="w-[305px] h-[385px] shadow-xl overflow-hidden rounded-[10px]"
               />
 
               {/* 프로필 사진과 텍스트를 묶은 컨테이너 */}
@@ -171,7 +184,7 @@ const CreateChallengePage = () => {
                 />
                 <div>
                   <h3 className="font-semibold">{userData.memberName}</h3>
-                  <p className="body-s text-gray-700">{`${year}년 ${month}월 ${day}일 ${hours}:${minutes}`}</p>
+                  <p className="body-s text-gray-700">{formattedDate}</p>
                 </div>
               </div>
 
@@ -179,8 +192,7 @@ const CreateChallengePage = () => {
               <div className="absolute top-20 right-8 ">
                 <DownloadIcon width={30} height={30} />
               </div>
-
-              <div className="body-l absolute bottom-[120px] w-full left-0 right-0 m-auto text-center text-nowrap break-words">
+              <div className="body-l absolute bottom-[110px] w-full h-[50px] left-0 right-0 m-auto px-5 text-center text-wrap break-keep">
                 {userData.challengeTitle}
               </div>
             </div>
