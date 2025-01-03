@@ -5,7 +5,6 @@
 ![1](https://github.com/poten001/front/assets/116064922/ac8fb3a6-d2bc-413d-b4fc-4a2fcd576150)
 
 **Web** : https://ochaelwan.vercel.app <br>
-**App** : React-Native로 작업 예정(완료되면 추가 예정)
 
 </div>
 
